@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.jenshen.test.firebaseservices.R;
 
 public class ChatActivity extends AppCompatActivity {
@@ -26,6 +27,7 @@ public class ChatActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
+        FirebaseMessaging.getInstance().subscribeToTopic("news");
         textView = findViewById(R.id.text);
         final EditText editText = findViewById(R.id.edittext);
         Button send = findViewById(R.id.send);
@@ -33,7 +35,7 @@ public class ChatActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String message = editText.getText().toString();
-                
+
             }
         });
         IntentFilter filter = new IntentFilter(BROADCAST_ACTION);
